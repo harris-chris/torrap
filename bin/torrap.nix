@@ -5,15 +5,16 @@ let pkgs = import <nixpkgs> {};
 in gcc11Stdenv.mkDerivation {
   name = "torrap";
   version = "0.1.0";
+  pkgname = "torrap";
   src = ./torrap.cpp;
   dontUnpack = true;
   inherit gcc11Stdenv coreutils;
   buildPhase = ''
-    g++ -o torrap $src
+    g++ -o $pkgname $src -ldl
   '';
   installPhase = ''
     mkdir -p $out/bin
-    cp torrap $out/bin
+    cp $pkgname $out/bin
   '';
   system = builtins.system;
   buildInputs = with pkgs; [
