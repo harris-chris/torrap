@@ -1,10 +1,9 @@
 let
-  personalPkgs = import <personal>;
+  torrapPkgs = import <torrap>;
   pkgs = import <nixpkgs> {};
 in pkgs.mkShell {
-  buildInputs = with personalPkgs; [
+  buildInputs = with torrapPkgs; [
     pkgs.which
-    getworkspacename
-    kakounetoworkspace
+    torrap
   ];
 }

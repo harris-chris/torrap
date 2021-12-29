@@ -8,6 +8,6 @@ let
   channelPackages = rec {
     inherit hello;
     reverse-string = pkgs.callPackage ./lib-rs/reverse-string.nix {};
-    torrap = pkgs.callPackage ./bin/torrap.nix { stringManip = reverse-string };
+    torrap = pkgs.callPackage ./bin/torrap.nix { stringManip = reverse-string; };
   };
 in channelPackages
