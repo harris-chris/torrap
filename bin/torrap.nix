@@ -5,7 +5,7 @@ let pkgs = import <nixpkgs> {};
 in gcc11Stdenv.mkDerivation {
   name = "torrap";
   version = "0.1.0";
-  src = "./torrap.cpp";
+  src = ./torrap.cpp;
   dontUnpack = true;
   inherit gcc11Stdenv coreutils;
   buildPhase = ''
