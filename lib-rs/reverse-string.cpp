@@ -1,4 +1,4 @@
-int stringReverse(char* orig, char *reversed) {
+void manipulate(char* orig, char *reversed) {
   int strLen{0};
   char c = *orig;
   while (c != '\n') {
@@ -8,7 +8,5 @@ int stringReverse(char* orig, char *reversed) {
 
   for (int i = 0; i < strLen; ++i)
     *(reversed + strLen - i) = *(orig + i);
-
-  return 0;
 }
 
