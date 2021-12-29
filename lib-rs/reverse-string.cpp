@@ -1,12 +1,11 @@
-void manipulate(char* orig, char *reversed) {
-  int strLen{0};
-  char c = *orig;
-  while (c != '\n') {
-    ++strLen;
-    ++c;
-  }
+extern "C" {
+  void manipulate(char* orig, char *reversed) {
+    int strLen{0};
+    while (*(orig + strLen) != '\0')
+      ++strLen;
 
-  for (int i = 0; i < strLen; ++i)
-    *(reversed + strLen - i) = *(orig + i);
+    for (int i = 0; i < strLen; ++i)
+      *(reversed + strLen - i - 1) = *(orig + i);
+  }
 }
 

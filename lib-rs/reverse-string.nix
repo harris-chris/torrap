@@ -10,7 +10,7 @@ in gcc11Stdenv.mkDerivation {
   dontUnpack = true;
   inherit gcc11Stdenv coreutils;
   buildPhase = ''
-    g++ -shared -c -o $soname $src
+    g++ -shared -o $soname $src
   '';
   installPhase = ''
     mkdir -p $out/lib

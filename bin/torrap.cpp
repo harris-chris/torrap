@@ -12,8 +12,8 @@ int main(int argc, char* argv[]) {
   char* error;
 
   char **s = environ;
-  while (*s)
-    std::cerr << *s++ << "\n";
+  // while (*s)
+  //   std::cerr << *s++ << "\n";
 
   handle = dlopen("stringManip.so", RTLD_LAZY);
   if (!handle) {
@@ -27,11 +27,10 @@ int main(int argc, char* argv[]) {
       exit(1);
   }
 
-  std::cerr << origStr << "\n";
   char newStr[strlen(origStr)];
   (*manip)(origStr, newStr);
-  std::cout << "string before: " << origStr;
-  std::cout << "string after: " << newStr;
+  std::cout << "string before: " << origStr << "\n";
+  std::cout << "string after: " << newStr << "\n";
   dlclose(handle);
   return 0;
 }

@@ -15,12 +15,13 @@ in gcc11Stdenv.mkDerivation {
   installPhase = ''
     mkdir -p $out/bin
     cp $pkgname $out/bin
+    wrapProgram "$out/bin/$pkgname" --set LD_LIBRARY_PATH "${stringManip}/lib:$LD_LIBRARY_PATH"
   '';
   system = builtins.system;
   buildInputs = with pkgs; [
-    valgrind
     bintools-unwrapped
+    makeWrapper
+    valgrind
   ];
-  LD_LIBRARY_PATH = "${stringManip}/lib:$LD_LIBRARY_PATH";
 }
 
