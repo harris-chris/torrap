@@ -1,20 +1,20 @@
-{ stdenvNoCC, bash, coreutils, gcc }:
+{ bash, coreutils, gcc11Stdenv }:
 
 let pkgs = import <nixpkgs> {};
 
-in stdenvNoCC.mkDerivation {
-  name = "torrap-library-1";
+in gcc11Stdenv.mkDerivation {
+  name = "reverse-string";
   version = "0.1.0";
-  src = "./torrap-library-1.cpp";
+  src = ./reverse-string.cpp;
   dontUnpack = true;
+  inherit gcc11Stdenv coreutils;
   buildPhase = ''
-    g++ -shared -c -o torrap-library-1.so $src
+    g++ -shared -c -o reverse-string.so $src
   '';
   installPhase = ''
     mkdir -p $out/bin
-    cp torrap-library-1 $out/lib
+    cp reverse-string.so $out/lib
   '';
-  inherit gcc coreutils;
   system = builtins.system;
   buildInputs = with pkgs; [
     valgrind
