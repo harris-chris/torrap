@@ -1,25 +1,25 @@
-{ bash, coreutils, gcc11Stdenv }:
+{ bash, coreutils, gcc11Stdenv, stringManip }:
 
-let
-  pkgs = import <nixpkgs> {};
+let pkgs = import <nixpkgs> {};
+
 in gcc11Stdenv.mkDerivation {
-  name = "reverse-string";
+  name = "torrap";
   version = "0.1.0";
-  src = ./reverse-string.cpp;
-  soname = "stringManip.so";
+  src = "./torrap.cpp";
   dontUnpack = true;
   inherit gcc11Stdenv coreutils;
   buildPhase = ''
-    g++ -shared -c -o $soname $src
+    g++ -o torrap $src
   '';
   installPhase = ''
-    mkdir -p $out/lib
-    cp $soname $out/lib
+    mkdir -p $out/bin
+    cp torrap $out/bin
   '';
   system = builtins.system;
   buildInputs = with pkgs; [
     valgrind
     bintools-unwrapped
   ];
+  LD_LIBRARY_PATH = "${stringManip}/lib:$LD_LIBRARY_PATH";
 }
 

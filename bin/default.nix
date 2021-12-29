@@ -1,5 +1,8 @@
 { pkgs ? import <nixpkgs> {} }:
 
-with pkgs; {
-  torrap-library-1 = callPackage ./torrap-library-1.nix {};
+let
+  torrap-channel = import <torrap>;
+in
+{
+  torrap-reverse = pkgs.callPackage ./torrap.nix { stringManip = torrap-channel.reverse-string };
 }
