@@ -1,5 +1,8 @@
+#include <iostream>
+
 extern "C" {
   void manipulate(char* orig, char *reversed) {
+    std::cout << "Reversing string!\n";
     int strLen{0};
     while (*(orig + strLen) != '\0')
       ++strLen;
